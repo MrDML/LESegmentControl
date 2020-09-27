@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'LESegmentedControl_Example' do
+  pod 'LESegmentedControl', :path => '../'
+
+  target 'LESegmentedControl_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end

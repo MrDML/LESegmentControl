@@ -1,0 +1,22 @@
+{
+  "name": "LESegmentedControl",
+  "version": "0.1.0",
+  "summary": "A short description of LESegmentedControl.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/dml1630@163.com/LESegmentedControl",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "dml1630@163.com": "dml1630@163.com"
+  },
+  "source": {
+    "git": "https://github.com/dml1630@163.com/LESegmentedControl.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "LESegmentedControl/Classes/**/*"
+}

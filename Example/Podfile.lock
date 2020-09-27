@@ -1,0 +1,16 @@
+PODS:
+  - LESegmentedControl (0.1.0)
+
+DEPENDENCIES:
+  - LESegmentedControl (from `../`)
+
+EXTERNAL SOURCES:
+  LESegmentedControl:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  LESegmentedControl: c389d3c8a5c7f7c4d5ffe73506749eba84196b55
+
+PODFILE CHECKSUM: c3c2a0585d86f892f6b859a908ae630d17f81e83
+
+COCOAPODS: 1.10.0.beta.1

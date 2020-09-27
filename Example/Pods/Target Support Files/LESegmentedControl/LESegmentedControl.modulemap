@@ -1,0 +1,6 @@
+framework module LESegmentedControl {
+  umbrella header "LESegmentedControl-umbrella.h"
+
+  export *
+  module * { export * }
+}
