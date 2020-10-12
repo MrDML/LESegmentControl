@@ -18,7 +18,7 @@ class ViewController: UIViewController,LESegmentedControlDelegate {
         
         let segmentedControl = LESegmentedControl(frame: CGRect(x: 20, y: 100, width: UIScreen.main.bounds.width - 40, height: 60), style: .dynamic)
         segmentedControl.delefate = self
-        segmentedControl.selectionStyle = .stripe
+//        segmentedControl.selectionStyle = .stripe
         self.view.addSubview(segmentedControl)
         segmentedControl.reloadData()
     }
@@ -49,7 +49,10 @@ extension ViewController {
         
         return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     }
-    
+    func segmentEdgeInset(segmentedControl: LESegmentedControl) -> UIEdgeInsets {
+        
+        return UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+    }
     func selectSegmentAttributes(segmentedControl: LESegmentedControl) -> [NSAttributedString.Key : Any]? {
         
        return [NSAttributedString.Key.font:UIFont.systemFont(ofSize: 20),NSAttributedString.Key.foregroundColor:UIColor.red]

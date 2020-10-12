@@ -57,9 +57,9 @@ import UIKit
     // 扩大点击区域
     private var enlargeEdgeInset:UIEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     // 对segment内间距的扩展
-    private var segmentEdgeInset:UIEdgeInsets = UIEdgeInsets(top: 0, left: 30, bottom: 0, right:30)
+    private var segmentEdgeInset:UIEdgeInsets = UIEdgeInsets(top: 0, left: 5, bottom: 0, right:5)
     /// box外边距
-    private var selectionBoxIndicatorEdgeInset:UIEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right:10)
+    private var selectionBoxIndicatorEdgeInset:UIEdgeInsets = UIEdgeInsets(top: 10, left: 0, bottom: 10, right:0)
     
     private var selectionStripeIndicatorEdgeInset:UIEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     // 选中索引
@@ -327,9 +327,9 @@ import UIKit
     // MARK: -刷新数据源
    public func reloadData(){
     self.sectionTitles = self.delefate?.numberOfTitles(in: self) ?? []
-    self.segmentEdgeInset = self.delefate?.segmentEdgeInset?(segmentedControl: self) ?? UIEdgeInsets(top: 0, left: 30, bottom: 0, right:30)
+    self.segmentEdgeInset = self.delefate?.segmentEdgeInset?(segmentedControl: self) ?? UIEdgeInsets(top: 0, left: 5, bottom: 0, right:5)
     self.enlargeEdgeInset = self.delefate?.enlargeEdgeInset?(segmentedControl: self) ?? UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-    self.selectionBoxIndicatorEdgeInset = self.delefate?.selectionBoxIndicatorEdgeInset?(segmentedControl: self) ?? UIEdgeInsets(top: 10, left: 10, bottom: 10, right:10)
+    self.selectionBoxIndicatorEdgeInset = self.delefate?.selectionBoxIndicatorEdgeInset?(segmentedControl: self) ?? UIEdgeInsets(top: 10, left: 0, bottom: 10, right:0)
     self.selectionStripeIndicatorEdgeInset = self.delefate?.selectionStripeIndicatorEdgeInset?(segmentedControl: self) ?? UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     setNeedsLayout()
     setNeedsDisplay()
@@ -353,7 +353,7 @@ import UIKit
         if  self.selectSegmentIndex >= 0 {
             switch selectionStyle {
             case .box:
-                addSectionBoxLayerAndSetFrame()
+                self.selectionIndicatorBoxLayer.frame = frameForBoxSelectionIndicator()
                 self.scrollView.layer.insertSublayer(self.selectionIndicatorBoxLayer, at: 0)
                 break
             case .stripe:
@@ -439,23 +439,6 @@ import UIKit
         sectionBoxLayers.removeAll()
     }
 
-    /// 添加指示器设置frame
-    func addSectionBoxLayerAndSetFrame(){
-        self.selectionIndicatorBoxLayer.frame = frameForBoxSelectionIndicator()
-        self.selectionIndicatorBoxLayer.backgroundColor = UIColor.clear.cgColor
-        let cirnerRadi:CGSize = CGSize(width: self.selectionIndicatorBoxLayer.frame.size.height * 0.5, height:  self.selectionIndicatorBoxLayer.frame.size.height * 0.5)
-        let path = UIBezierPath(roundedRect: self.selectionIndicatorBoxLayer.bounds, byRoundingCorners: .allCorners, cornerRadii: cirnerRadi)
-        let maskLayer = CAShapeLayer()
-        maskLayer.frame = self.selectionIndicatorBoxLayer.bounds
-        maskLayer.path = path.cgPath;
-        maskLayer.fillColor = selectionIndicatorBoxColor?.cgColor
-        maskLayer.backgroundColor = UIColor.clear.cgColor
-        maskLayer.actions = ["position":NSNull()]
-        maskLayer.opacity = Float(self.selectionIndicatorBoxOpacity)
-  
-        sectionBoxLayers.append(maskLayer)
-        self.selectionIndicatorBoxLayer.addSublayer(maskLayer)
-    }
     
 
     /// box 背景frame
@@ -487,6 +470,9 @@ import UIKit
             break
 
         }
+        self.selectionIndicatorBoxLayer.cornerRadius = rect.height * 0.5
+        self.selectionIndicatorBoxLayer.masksToBounds = true
+        self.selectionIndicatorBoxLayer.backgroundColor = selectionIndicatorBoxColor?.cgColor
         return rect
     }
     
