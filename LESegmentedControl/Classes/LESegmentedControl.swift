@@ -461,12 +461,11 @@ import UIKit
                 index += 1
             }
             // 获取对应的宽度
-            let widthForIndex = self.segmentWidthsArray[self.selectSegmentIndex]
-            
-//            rect = CGRect(x: selectedSegmentOffset, y: 0, width: widthForIndex, height: self.frame.size.height)
-            
-            rect = CGRect(x: selectedSegmentOffset + selectionBoxIndicatorEdgeInset.left , y: selectionBoxIndicatorEdgeInset.top, width: widthForIndex  - selectionBoxIndicatorEdgeInset.left - selectionBoxIndicatorEdgeInset.right, height: self.frame.size.height - selectionBoxIndicatorEdgeInset.top - selectionBoxIndicatorEdgeInset.bottom)
-            
+            if self.segmentWidthsArray.count >= 1 {
+                let widthForIndex = self.segmentWidthsArray[self.selectSegmentIndex]
+                rect = CGRect(x: selectedSegmentOffset + selectionBoxIndicatorEdgeInset.left , y: selectionBoxIndicatorEdgeInset.top, width: widthForIndex  - selectionBoxIndicatorEdgeInset.left - selectionBoxIndicatorEdgeInset.right, height: self.frame.size.height - selectionBoxIndicatorEdgeInset.top - selectionBoxIndicatorEdgeInset.bottom)
+            }
+
             break
 
         }
