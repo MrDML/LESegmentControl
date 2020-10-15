@@ -12,13 +12,18 @@ import LESegmentControl
 class ViewController: UIViewController,LESegmentedControlDelegate {
 
     
-
+    lazy var segmentedControl: LESegmentedControl = {
+       let  segmentedControl = LESegmentedControl(frame: CGRect(x: 20, y: 100, width: UIScreen.main.bounds.width - 40, height: 60), style: .dynamic)
+        segmentedControl.delefate = self
+        //        segmentedControl.selectionStyle = .stripe
+        return segmentedControl
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let segmentedControl = LESegmentedControl(frame: CGRect(x: 20, y: 100, width: UIScreen.main.bounds.width - 40, height: 60), style: .dynamic)
-        segmentedControl.delefate = self
-//        segmentedControl.selectionStyle = .stripe
+
+
         self.view.addSubview(segmentedControl)
         segmentedControl.reloadData()
     }
@@ -29,6 +34,12 @@ class ViewController: UIViewController,LESegmentedControlDelegate {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+    
+        segmentedControl.setSelectedSegmentIndex(index: 5, animated: true)
     }
 
 }
@@ -46,7 +57,6 @@ extension ViewController {
     
 
     func selectionStripeIndicatorEdgeInset(segmentedControl: LESegmentedControl) -> UIEdgeInsets {
-        
         return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     }
     func segmentEdgeInset(segmentedControl: LESegmentedControl) -> UIEdgeInsets {

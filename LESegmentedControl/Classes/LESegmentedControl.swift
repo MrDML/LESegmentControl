@@ -824,6 +824,12 @@ import UIKit
 
 }
 
+extension LESegmentedControl{
+    
+    @objc  public func setSelectedSegmentIndex(index:Int,animated:Bool){
+        self .setSelectSegmentIndex(index: index, animated: animated, notify: false)
+    }
+}
 
 extension LESegmentedControl{
     
