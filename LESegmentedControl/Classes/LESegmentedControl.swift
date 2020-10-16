@@ -51,7 +51,7 @@
 }
 
 import UIKit
-@objc public class LESegmentedControl: UIControl,UIScrollViewDelegate {
+@objc open class LESegmentedControl: UIControl,UIScrollViewDelegate {
 
     public weak var delefate:LESegmentedControlDelegate? = nil;
     // 扩大点击区域
@@ -206,7 +206,7 @@ import UIKit
         initDefaltValue()
     }
     
-    required init?(coder: NSCoder) {
+    required public init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
